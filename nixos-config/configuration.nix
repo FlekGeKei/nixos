@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, ... }:
 
 {
@@ -32,8 +28,10 @@
     opengl.driSupport32Bit = true;
   };
 
-  networking.hostName = "fgk"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "fgk";
+    networkmanager.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "CET";
@@ -47,8 +45,10 @@
     ];
   };
   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "us";
+    earlySetup = true;
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-v16n.psf.gz";
+    packages = with pkgs; [ terminus_font ];
+    keyMap = "us";
   };
 
   # Enable sound.
@@ -70,7 +70,6 @@
       flekgekei = {
         isNormalUser = true;
         extraGroups = [ "wheel" "video" "audio" "imput" "networkmanager" ]; # Enable ‘sudo’ for the user.
-        packages = with pkgs; [];
       };
     };
   };
