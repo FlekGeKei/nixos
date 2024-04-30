@@ -1,6 +1,6 @@
 # nixos
 
-## Installing
+## Installing (example)
 
 bla-bla-bla
 
@@ -8,7 +8,6 @@ bla-bla-bla
 
 ```console
 wget https://raw.githubusercontent.com/FlekGeKei/nixos/main/disco/disco.nix
-
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disk.nix
 ```
 
@@ -19,6 +18,6 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 
 ```console
 sudo wget -P /mnt/etc/nixos https://raw.githubusercontent.com/FlekGeKei/nixos/main/nixos-config/configuration.nix 
-
-sudo nixos-install
+sudo wget -P /mnt/etc/nixos https://raw.githubusercontent.com/FlekGeKei/nixos/main/flake/flake.nix 
+sudo nixos-install --flake /mnt/etc/nixos/flake.nix#fgk
 ```
