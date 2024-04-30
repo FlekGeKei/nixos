@@ -72,6 +72,14 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    wrappers = {
+      intel_gpu_top = {
+	owner = "root";
+	group = "root";
+	capabilities = "cap_perfmon+ep";
+	source = "${pkgs.intel-gpu-tools.out}/bin/intel_gpu_top";
+      };
+    };
   };
 
   services.pipewire = {
@@ -116,7 +124,11 @@
     home-manager
     intel-graphics-compiler
     intel-compute-runtime
+    intel-gpu-tools
     mako
+    bc
+    jq
+    speedcrunch
     ## for hyprland
     xdg-desktop-portal-hyprland
     #ui

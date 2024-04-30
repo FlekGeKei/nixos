@@ -16,7 +16,7 @@
           "network"
           "temperature"
           "cpu"
-          #"custom/iris"
+          "custom/iris"
           "memory"
           "battery"
           "backlight"
@@ -25,13 +25,13 @@
           "clock"
         ];
 
-	#"custom/iris" = {
-	#  format = "{}%  ";
-  	#  interval = "10";
-	#  tooltip = true;
-	#  return-type = "json";
-	#  exec = "~/.config/waybar/s/g3.sh";
-	#};
+	"custom/iris" = {
+	  format = "{}%  ";
+  	  interval = "10";
+	  tooltip = true;
+	  return-type = "json";
+	  exec = "~/.config/home-manager/modules/ws/iris.sh";
+	};
 
 	"hyprland/workspaces" = {
 	  persistent-workspaces = {
@@ -194,12 +194,10 @@
 	  background-color: #3F3F3F;
 	}
 
-	/*
 	#custom-iris {
 	  color: #ffffff;
 	  background-color: #3f3f3f;
 	}
-	*/
 
 	#language {
 	  background-color: #3F3F3F;
