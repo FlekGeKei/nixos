@@ -1,10 +1,10 @@
-### nixos
+# nixos
 
 ## Installing
 
 bla-bla-bla
 
-# [Disco](https://github.com/nix-community/disko)
+### [Disco](https://github.com/nix-community/disko)
 
 ```console
 wget https://raw.githubusercontent.com/FlekGeKei/nixos/main/disco/disco.nix
@@ -12,7 +12,7 @@ wget https://raw.githubusercontent.com/FlekGeKei/nixos/main/disco/disco.nix
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disk.nix
 ```
 
-# Nix
+### Nix
 
 > [!WARNING]
 > if ESP not mounted to /mnt/boot, do it manual
