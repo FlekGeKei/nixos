@@ -1,1 +1,2 @@
 flake/flake.lock
+home-manager/modules/git.nix

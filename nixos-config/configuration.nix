@@ -24,6 +24,22 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+	Type = "simple";
+	ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+	Restart = "on-failure";
+	RestartSec = 1;
+	TimeoutStopSec = 10;
+      };
+    };
+  };
+
   hardware = {
     opengl.driSupport32Bit = true;
   };
@@ -46,14 +62,18 @@
   };
   console = {
     earlySetup = true;
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-v16n.psf.gz";
+    font = "ter-v16n";
     packages = with pkgs; [ terminus_font ];
     keyMap = "us";
   };
 
-  # Enable sound.
   sound.enable = true;
-  security.rtkit.enable = true;
+
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -69,7 +89,7 @@
     users = {
       flekgekei = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "imput" "networkmanager" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "video" "audio" "imput" "networkmanager" ];
       };
     };
   };
@@ -97,6 +117,8 @@
     intel-graphics-compiler
     intel-compute-runtime
     mako
+    ## for hyprland
+    xdg-desktop-portal-hyprland
     #ui
     kitty
     vivaldi
@@ -172,6 +194,7 @@
       enable = true;
     };
   };
+
 
   # Open ports in the firewall.
   networking.nftables = {
