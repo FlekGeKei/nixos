@@ -26,7 +26,7 @@
         ];
 
 	"custom/iris" = {
-	  format = "{}%  ";
+	  format = " {}%  ";
   	  interval = "10";
 	  tooltip = true;
 	  return-type = "json";
@@ -41,13 +41,13 @@
 
 	"memory" = {
 	 interval = 30;
-	 format = "{used}G  ";
+	 format = " {used}G  ";
 	 max-length = 10;
 	};
 
 	"network" = {
 	  #interface = "wlp2*";
-	  format-wifi = "{signalStrength}% {icon} ";
+	  format-wifi = " {signalStrength}% {icon} ";
 	  format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
 	  tooltip-format = "{essid} {ifname} via {gwaddr}  ";
 	  format-disconnected = " ";
@@ -56,15 +56,15 @@
 	
 	"backlight" = {
 	  device = "intel_backlight";
-	  format = "{percent}% {icon} ";
+	  format = " {percent}% {icon} ";
 	  format-icons = ["" "" "" "" "" "" "" "" ""];
 	};
 
 	"battery" = {
-	  format = "{capacity}% {icon} ";
-	  format-charging = "{capacity}%  ";
-	  format-plugged = "{capacity}%  ";
-	  format-alt = "{time} {icon} ";
+	  format = " {capacity}% {icon} ";
+	  format-charging = " {capacity}%  ";
+	  format-plugged = " {capacity}%  ";
+	  format-alt = " {time} {icon} ";
 	  format-icons = ["" "" "" "" ""];
 	};
 
@@ -73,7 +73,7 @@
 	};
 
 	"hyprland/language" = {
-	  format = "{}  ";
+	  format = " {}  ";
 	  format-en = "US";
 	  format-ru = "RU";
 	  keyboard-name = "at-translated-set-2-keyboard";
@@ -113,9 +113,9 @@
 	"mpd" = {
 	  server = "localhost";
 	  port = "6600";
-	  format = "{stateIcon} {consumeIcon}{singleIcon} {artist} - {title} ";
-	  format-disconnected = "Disconnected ";
-	  format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped";
+	  format = " {stateIcon} {consumeIcon}{singleIcon} {artist} - {title} ";
+	  format-disconnected = " Disconnected ";
+	  format-stopped = " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped";
 	  interval = 10;
 	  on-click = "mpc toggle";
 	  on-click-right = "mpc next";
@@ -138,24 +138,24 @@
 	    paused = "";
 	    playing = "";
 	  };
-	  tooltip-format = "MPD {elapsedTime:%M:%S}/{totalTime:%M:%S}";
-	  tooltip-format-disconnected = "MPD (disconnected)";
+	  tooltip-format = " MPD {elapsedTime:%M:%S}/{totalTime:%M:%S}";
+	  tooltip-format-disconnected = " MPD (disconnected)";
 	};
 
 	"cpu" = {
-	  format = "{usage}%  ";
+	  format = " {usage}%  ";
 	  tooltip = false;
 	};
 
 	"temperature" = {
 	  critical-threshold = 80;
-	  format = "{temperatureC}°C {icon}";
+	  format = " {temperatureC}°C {icon}";
 	  format-icons = ["" "" "" ""];
 	};
 
 	"wireplumber" = {
-	  format = "{volume}% {icon} ";
-	  format-muted = " ";
+	  format = " {volume}% {icon} ";
+	  format-muted = "  ";
 	  on-click = "pavucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;
