@@ -131,6 +131,8 @@
 	"$mainMod, R, exec, bemenu-run -H 25"
 	"$mainMod, space, togglefloating,"
 	"$mainMod, F, fullscreen,"
+	"$mainMod, Print, exec, grim -g $(slurp) ~/Pictures/Screenshots/screen-$(date +%s).png"
+	", Print, exec, grim ~/Pictures/Screenshots/screen-$(date +%s).png"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, l,  movefocus, l"

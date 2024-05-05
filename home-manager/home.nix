@@ -15,6 +15,10 @@
       package = pkgs.kdePackages.breeze;
       name = "breeze_cursors";
     };
+
+    #sessionPath = [
+    #  "$HOME/.local/bin"
+    #];
   };
   
   imports = [
@@ -24,7 +28,7 @@
     ./modules/kitty.nix
     ./modules/mako.nix
     ./modules/mpd.nix
-    ./modules/ncmpcpp.nix
+    #./modules/ncmpcpp.nix
     ./modules/qt.nix
     ./modules/ranger.nix
     ./modules/waybar.nix

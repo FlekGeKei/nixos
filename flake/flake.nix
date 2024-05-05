@@ -30,7 +30,7 @@
     homeConfigurations.flekgekei = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ 
-        /home/flekgekei/.nix/home.nix 
+        /home/flekgekei/.config/home-manager/home.nix 
       ];
     };
   };

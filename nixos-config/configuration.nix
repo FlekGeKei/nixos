@@ -61,9 +61,8 @@
     ];
   };
   console = {
-    earlySetup = true;
+    #earlySetup = true;
     font = "ter-v16n";
-    packages = with pkgs; [ terminus_font ];
     keyMap = "us";
   };
 
@@ -109,7 +108,6 @@
     curl
     ranger
     htop
-    ncmpcpp
     fzf
     zip
     unzip
@@ -131,6 +129,8 @@
     speedcrunch
     ## for hyprland
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal
+    xdg-utils
     #ui
     kitty
     vivaldi
@@ -143,6 +143,12 @@
     waybar
     pavucontrol
     onedrive
+    imv
+    wf-recorder
+    grim
+    slurp
+    gimp
+    terminus_font
     ##games
     prismlauncher
     osu-lazer-bin
@@ -213,6 +219,17 @@
     };
   };
 
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [
+	pkgs.xdg-desktop-portal-hyprland
+      ];
+    };
+    mime = {
+      enable = true;
+    };
+  };
 
   # Open ports in the firewall.
   networking.nftables = {
