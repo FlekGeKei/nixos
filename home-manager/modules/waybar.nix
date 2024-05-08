@@ -113,9 +113,9 @@
 	"mpd" = {
 	  server = "localhost";
 	  port = "6600";
-	  format = " {stateIcon} {consumeIcon}{singleIcon} {artist} - {title} ";
-	  format-disconnected = " Disconnected ";
-	  format-stopped = " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped";
+	  format = "{stateIcon} {consumeIcon}{singleIcon} {artist} - {title} ";
+	  format-disconnected = "Disconnected ";
+	  format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped";
 	  interval = 10;
 	  on-click = "mpc toggle";
 	  on-click-right = "mpc next";
@@ -138,8 +138,8 @@
 	    paused = "";
 	    playing = "";
 	  };
-	  tooltip-format = " MPD {elapsedTime:%M:%S}/{totalTime:%M:%S}";
-	  tooltip-format-disconnected = " MPD (disconnected)";
+	  tooltip-format = "MPD {elapsedTime:%M:%S}/{totalTime:%M:%S}";
+	  tooltip-format-disconnected = "MPD (disconnected)";
 	};
 
 	"cpu" = {
