@@ -26,7 +26,7 @@
         ];
 
 	"custom/iris" = {
-	  format = " {}%  ";
+	  format = "{}%  ";
   	  interval = "10";
 	  tooltip = true;
 	  return-type = "json";
@@ -144,7 +144,7 @@
 
 	"cpu" = {
 	  format = " {usage}%  ";
-	  tooltip = false;
+	  tooltip = true;
 	};
 
 	"temperature" = {
@@ -154,8 +154,8 @@
 	};
 
 	"wireplumber" = {
-	  format = " {volume}% {icon} ";
-	  format-muted = "  ";
+	  format = "{volume}% {icon} ";
+	  format-muted = "   ";
 	  on-click = "pavucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;
@@ -171,6 +171,7 @@
 	  font-size: 16px;
 	  padding-top: 0;
 	  padding-bottom: 0;
+	  padding: 0 2px;
 	}
 
 	window#waybar {
