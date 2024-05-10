@@ -56,7 +56,7 @@
 	
 	"backlight" = {
 	  device = "intel_backlight";
-	  format = " {percent}% {icon} ";
+	  format = "{percent}% {icon} ";
 	  format-icons = ["" "" "" "" "" "" "" "" ""];
 	};
 
@@ -149,13 +149,13 @@
 
 	"temperature" = {
 	  critical-threshold = 80;
-	  format = " {temperatureC}°C {icon}";
+	  format = "{temperatureC}°C {icon}";
 	  format-icons = ["" "" "" ""];
 	};
 
 	"wireplumber" = {
 	  format = "{volume}% {icon} ";
-	  format-muted = "   ";
+	  format-muted = " ";
 	  on-click = "pavucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;

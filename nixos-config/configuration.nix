@@ -22,6 +22,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    initrd.kernelModules = [ "i915" ];
   };
 
   systemd = {
@@ -61,8 +62,9 @@
     ];
   };
   console = {
-    #earlySetup = true;
-    font = "ter-v16n";
+    earlySetup = true;
+    packages = with pkgs; [ terminus_font ];
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-v16n.psf.gz";
     keyMap = "us";
   };
 
@@ -109,7 +111,6 @@
   environment.systemPackages = with pkgs; [
     #cli-shit
     wget
-    git
     curl
     ranger
     htop
@@ -153,7 +154,6 @@
     grim
     slurp
     gimp
-    terminus_font
     ##games
     prismlauncher
     osu-lazer-bin
@@ -161,7 +161,6 @@
     kdePackages.breeze-gtk
     kdePackages.breeze-icons
     kdePackages.breeze
-    noto-fonts
     #compat
     wineWowPackages.full
     winetricks
@@ -171,15 +170,15 @@
     nixvim = {
       enable = true;
       defaultEditor = true;
-      extraPlugins = [
-        pkgs.vimPlugins.vim-airline
-	pkgs.vimPlugins.nerdtree
-	pkgs.vimPlugins.vim-surround
-	pkgs.vimPlugins.vim-css-color
-	pkgs.vimPlugins.vim-devicons
-	pkgs.vimPlugins.vim-multiple-cursors
-	pkgs.vimPlugins.iceberg-vim
-	pkgs.vimPlugins.nerdcommenter
+      extraPlugins = with pkgs.vimPlugins; [
+        vim-airline
+	nerdtree
+	vim-surround
+	vim-css-color
+	vim-devicons
+	vim-multiple-cursors
+	iceberg-vim
+	nerdcommenter
       ];
       colorscheme = "iceberg";
       opts = {
@@ -212,17 +211,23 @@
 	];
       };
     };
-    hyprland.enable = true;
-    gamemode = {
-      enable = true;
-    };
     gnupg = {
       agent = {
 	enable = true;
 	enableSSHSupport = true;
       };
     };
+    hyprland.enable = true;
+    gamemode.enable = true;
+    git.enable = true;
   };
+
+  fonts.packages = with pkgs; [
+   noto-fonts
+   noto-fonts-lgc-plus
+   noto-fonts-cjk-sans
+   noto-fonts-cjk-serif
+  ];
 
   xdg = {
     portal = {
@@ -236,7 +241,7 @@
     };
   };
 
-  # Open ports in the firewall.
+  # Open ports in the firewall. 
   networking.nftables = {
     enable = true;
   };
@@ -244,4 +249,3 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
 }
-
