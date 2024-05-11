@@ -42,7 +42,10 @@
   };
 
   hardware = {
-    opengl.driSupport32Bit = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
   };
 
   networking = {
@@ -50,10 +53,8 @@
     networkmanager.enable = true;
   };
 
-  # Set your time zone.
   time.timeZone = "CET";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     supportedLocales = [
@@ -68,8 +69,6 @@
     keyMap = "us";
   };
 
-  sound.enable = true;
-
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -83,6 +82,8 @@
     };
   };
 
+  sound.enable = true;
+
   services = {
     pipewire = {
       enable = true;
@@ -92,6 +93,7 @@
       jack.enable = true;
       wireplumber.enable = true;
     };
+    #illum.enable = true;
     #asusd = {
     #  enable = true;
     #};
@@ -246,6 +248,5 @@
     enable = true;
   };
 
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  system.stateVersion = "23.11"; 
 }

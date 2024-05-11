@@ -7,6 +7,9 @@
     packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
       fastfetch
+      mindustry
+      cataclysm-dda
+      brightnessctl
     ];
 
     pointerCursor = {

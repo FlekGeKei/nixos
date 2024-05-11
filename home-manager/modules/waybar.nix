@@ -171,7 +171,6 @@
 	  font-size: 16px;
 	  padding-top: 0;
 	  padding-bottom: 0;
-	  padding: 0 2px;
 	}
 
 	window#waybar {

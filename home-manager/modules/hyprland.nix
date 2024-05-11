@@ -180,9 +180,15 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        # Keyboard backlight
-        "$mainMod, F5, exec, brightnessctl -d *::kbd_backlight set +33%"
-        "$mainMod, F4, exec, brightnessctl -d *::kbd_backlight set 33%-"
+        # Volume and Media Control
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume 45 0.05+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume 45 0.05-"
+        ", XF86AudioMute, exec, wpctl set-mute 45 toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute 46 toggle"
+        
+        # Brightness control
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%- "
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5% "
       ];
 
       bindm = [
