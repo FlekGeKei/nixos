@@ -10,6 +10,7 @@
       mindustry
       cataclysm-dda
       brightnessctl
+      #webcord
     ];
 
     pointerCursor = {

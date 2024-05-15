@@ -156,6 +156,8 @@
     grim
     slurp
     gimp
+    evince
+    texstudio
     ##games
     prismlauncher
     osu-lazer-bin
