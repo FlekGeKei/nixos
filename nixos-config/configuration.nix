@@ -19,7 +19,14 @@
     loader = {
       # Use the systemd-boot EFI boot loader.
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = false;
+
+      #grub = {
+	#enable = true;
+	#efiSupport = true;
+	#theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
+	#device = "/dev/disk/by-uuid/4228-1CEE";
+      #};
     };
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "i915" ];
@@ -93,6 +100,8 @@
       jack.enable = true;
       wireplumber.enable = true;
     };
+    logind.lidSwitch = "ignore";
+    udisks2.enable = true;
     #illum.enable = true;
     #asusd = {
     #  enable = true;
@@ -123,6 +132,7 @@
     mpc-cli
     swww
     wl-clipboard
+    steamcmd
     ##books
     texliveFull
     #other
@@ -131,6 +141,8 @@
     intel-graphics-compiler
     intel-compute-runtime
     intel-gpu-tools
+    mesa
+    mesa-demos
     mako
     bc
     jq
@@ -139,10 +151,11 @@
     xdg-desktop-portal-hyprland
     xdg-desktop-portal
     xdg-utils
+    udiskie
     #ui
     kitty
     vivaldi
-    discord
+    webcord
     vlc
     bemenu
     telegram-desktop
@@ -165,6 +178,7 @@
     kdePackages.breeze-gtk
     kdePackages.breeze-icons
     kdePackages.breeze
+    qt6Packages.qt6gtk2
     #compat
     wineWowPackages.full
     winetricks
@@ -225,6 +239,12 @@
     gamemode.enable = true;
     git.enable = true;
   };
+  
+  qt = {
+    enable = true;
+    style = "breeze";
+    platformTheme = "gtk2";
+  };
 
   fonts.packages = with pkgs; [
    noto-fonts
@@ -242,12 +262,26 @@
     };
     mime = {
       enable = true;
+      #addedAssociations = {
+      #  "application/pdf" = "org.gnome.Evince.desktop";
+      #};
+      #defaultApplications = {
+      #  "" = "";
+      #};
     };
   };
 
   # Open ports in the firewall. 
-  networking.nftables = {
-    enable = true;
+  networking = {
+    nftables.enable = true;
+    firewall = {
+      allowedTCPPorts = [
+	6600
+      ];
+      allowedUDPPorts = [
+	6600
+      ];
+    };
   };
 
   system.stateVersion = "23.11"; 

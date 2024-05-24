@@ -1,6 +1,7 @@
 {
   qt = {
     enable = true;
-    platformTheme.name = "qt6gtk2";
+    platformTheme.name = "gtk2";
+    style.name = "breeze";
   };
 }

@@ -23,8 +23,12 @@
 
 	follow_mouse = 1;
 
+	force_no_accel = true;
+	accel_profile = "flat";
+
 	touchpad = {
           natural_scroll = false;
+	  disable_while_typing = false;
 	};
 
 	sensitivity = 0;
@@ -38,8 +42,10 @@
 	"col.inactive_border" = "rgba(4d4d4dee)";
 
 	layout = "dwindle";
+      };
 
-	no_cursor_warps = false;
+      cursor = {
+	no_warps = true;
       };
 
       decoration = {
@@ -102,6 +108,7 @@
       windowrule = [
 	"workspace 7, ^(qbittorrent)$"
 	"workspace 8, ^(discord)$"
+	"workspace 8, ^(WebCord)$"
 	"workspace 1, ^(kitty)$"
 	"workspace 2, ^(Vivaldi-stable)$"
       ];
@@ -122,6 +129,7 @@
         "waybar"
 	"swww init"
 	"swww img /home/flekgekei/Pictures/wallpapers/pc/6944830.jpg"
+	"udiskie -s"
       ];
 
       bind = [ 

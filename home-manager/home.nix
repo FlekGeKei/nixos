@@ -33,7 +33,7 @@
     ./modules/mako.nix
     ./modules/mpd.nix
     #./modules/ncmpcpp.nix
-    ./modules/qt.nix
+    #./modules/qt.nix
     ./modules/ranger.nix
     ./modules/waybar.nix
     #./modules/zsh.nix
