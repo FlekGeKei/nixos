@@ -1,5 +1,7 @@
 # nixos
 
+(screenshot)[preview/screen-1716658428.png]
+
 ## Installing (example)
 
 bla-bla-bla
