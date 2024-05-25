@@ -3,6 +3,7 @@
     username = "flekgekei";
     homeDirectory = "/home/flekgekei";
     stateVersion = "23.11";
+    enableNixpkgsReleaseCheck = false;
 
     packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })

@@ -20,13 +20,6 @@
       # Use the systemd-boot EFI boot loader.
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
-
-      #grub = {
-	#enable = true;
-	#efiSupport = true;
-	#theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
-	#device = "/dev/disk/by-uuid/4228-1CEE";
-      #};
     };
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "i915" ];
@@ -132,6 +125,7 @@
     mpc-cli
     swww
     wl-clipboard
+    cliphist
     steamcmd
     ##books
     texliveFull

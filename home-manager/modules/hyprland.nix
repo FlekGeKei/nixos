@@ -130,6 +130,8 @@
 	"swww init"
 	"swww img /home/flekgekei/Pictures/wallpapers/pc/6944830.jpg"
 	"udiskie -s"
+	"wl-paste --type text --watch cliphist store"
+	"wl-paste --type image --watch cliphist store"
       ];
 
       bind = [ 
@@ -141,6 +143,7 @@
 	"$mainMod, F, fullscreen,"
 	"$mainMod, Print, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/screen-$(date +%s).png"
 	", Print, exec, grim ~/Pictures/Screenshots/screen-$(date +%s).png"
+	"$mainMod, V, exec, cliphist list | bemenu -H 25 | cliphist decode | wl-copy"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, l,  movefocus, l"

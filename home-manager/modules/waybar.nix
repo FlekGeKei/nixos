@@ -159,7 +159,7 @@
 	  on-click = "pavucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;
-	  format-icons = ["" "" ""];
+	  format-icons = ["" "" " "];
 	};
       };
     };
