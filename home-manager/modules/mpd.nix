@@ -19,7 +19,7 @@
 	type			"fifo"
 	name			"Fifo"
         path			"/tmp/mpd.fifo"
-        format		"44100:16:2"
+        format			"44100:16:2"
       }
       input {
 	plugin			"curl"

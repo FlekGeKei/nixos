@@ -44,10 +44,6 @@
 	layout = "dwindle";
       };
 
-      cursor = {
-	no_warps = true;
-      };
-
       decoration = {
         rounding = 2;
 

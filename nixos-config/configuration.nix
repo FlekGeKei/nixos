@@ -121,6 +121,7 @@
     fzf
     zip
     unzip
+    unrar
     p7zip
     mpc-cli
     swww
@@ -231,7 +232,10 @@
     };
     hyprland.enable = true;
     gamemode.enable = true;
-    git.enable = true;
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
   };
   
   qt = {
@@ -271,9 +275,11 @@
     firewall = {
       allowedTCPPorts = [
 	6600
+	25565
       ];
       allowedUDPPorts = [
 	6600
+	24454
       ];
     };
   };
