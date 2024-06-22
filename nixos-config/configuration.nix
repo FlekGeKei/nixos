@@ -15,6 +15,13 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 2*1024;
+    }
+  ];
+
   boot = {
     loader = {
       # Use the systemd-boot EFI boot loader.
@@ -133,10 +140,7 @@
     #other
     mpd
     home-manager
-    intel-graphics-compiler
-    intel-compute-runtime
     intel-gpu-tools
-    mesa
     mesa-demos
     mako
     bc
@@ -192,6 +196,7 @@
 	vim-multiple-cursors
 	iceberg-vim
 	nerdcommenter
+	vim-visual-multi
       ];
       colorscheme = "iceberg";
       opts = {
@@ -230,12 +235,12 @@
 	enableSSHSupport = true;
       };
     };
-    hyprland.enable = true;
-    gamemode.enable = true;
     git = {
       enable = true;
       lfs.enable = true;
     };
+    hyprland.enable = true;
+    gamemode.enable = true;
   };
   
   qt = {

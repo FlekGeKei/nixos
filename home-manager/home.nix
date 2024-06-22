@@ -11,6 +11,7 @@
       mindustry
       cataclysm-dda
       brightnessctl
+      obs-studio
       #webcord
     ];
 
