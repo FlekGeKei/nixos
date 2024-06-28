@@ -7,7 +7,6 @@
 
     packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
-      (pkgs.buildEnv { name = "my-scripts"; paths = [ ./shells/scripts ]; })
       fastfetch
       brightnessctl
     ];
