@@ -7,12 +7,9 @@
 
     packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
+      (pkgs.buildEnv { name = "my-scripts"; paths = [ ./shells/scripts ]; })
       fastfetch
-      mindustry
-      cataclysm-dda
       brightnessctl
-      obs-studio
-      #webcord
     ];
 
     pointerCursor = {

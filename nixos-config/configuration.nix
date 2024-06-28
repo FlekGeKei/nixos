@@ -13,7 +13,21 @@
    };
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [ "electron-28.3.3" ];
+    };
+    overlays = [
+      (self: super: {
+	webcord-venctop-arrpc = pkgs.writeScriptBin "discord" ''
+	  arrpc &
+	  webcord
+	  kill $(pgrep -f "arrpc")
+	'';
+      })
+    ];
+  };
 
   swapDevices = [
     {
@@ -49,9 +63,9 @@
   };
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
   };
 
@@ -146,6 +160,8 @@
     bc
     jq
     speedcrunch
+    arrpc
+    webcord-venctop-arrpc
     ## for hyprland
     xdg-desktop-portal-hyprland
     xdg-desktop-portal
@@ -154,7 +170,7 @@
     #ui
     kitty
     vivaldi
-    webcord
+    webcord-vencord
     vlc
     bemenu
     telegram-desktop
@@ -170,6 +186,7 @@
     gimp
     evince
     texstudio
+    blockbench
     ##games
     prismlauncher
     osu-lazer-bin
