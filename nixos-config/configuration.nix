@@ -18,15 +18,13 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "electron-28.3.3" ];
     };
-    overlays = [
-      (self: super: {
-	webcord-venctop-arrpc = pkgs.writeScriptBin "discord" ''
-	  arrpc &
-	  webcord
-	  kill $(pgrep -f "arrpc")
-	'';
-      })
-    ];
+    overlays = [(self: super: {
+      webcord-venctop-arrpc = pkgs.writeScriptBin "discord" ''
+	arrpc &
+	webcord
+	kill $(pgrep -f "arrpc")
+      '';
+    })];
   };
 
   swapDevices = [
