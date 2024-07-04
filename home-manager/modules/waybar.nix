@@ -19,8 +19,8 @@
           "custom/iris"
           "memory"
           "battery"
-          "backlight"
           "battery#bat2"
+          "backlight"
           "wireplumber"
           "clock"
         ];
@@ -56,16 +56,16 @@
 	
 	"backlight" = {
 	  device = "intel_backlight";
-	  format = "{percent}% {icon} ";
+	  format = " {percent}% {icon} ";
 	  format-icons = ["" "" "" "" "" "" "" "" ""];
 	};
 
 	"battery" = {
-	  format = " {capacity}% {icon} ";
-	  format-charging = " {capacity}%  ";
-	  format-plugged = " {capacity}%  ";
-	  format-alt = " {time} {icon} ";
-	  format-icons = ["" "" "" "" ""];
+	  format = " {capacity}% {icon}";
+	  format-charging = " {capacity}% 󰂄";
+	  format-plugged = " {capacity}% 󰂅 ";
+	  format-alt = "{time} {icon} ";
+	  format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
 	};
 
 	"battery#bat2" = {
@@ -80,7 +80,7 @@
 	};
 
 	"clock" = {
-	  format = "{:%I:%M %p}  ";
+	  format = " {:%I:%M %p}  ";
 	  tooltip-format = "<tt><small>{calendar}</small></tt>";
 	  locale = "ru_RU.UTF-8";
 	  calendar = {
@@ -148,6 +148,7 @@
 	};
 
 	"temperature" = {
+	  hwmon-path = "/sys/class/hwmon/hwmon0/temp1_input";
 	  critical-threshold = 80;
 	  format = "{temperatureC}°C {icon}";
 	  format-icons = ["" "" "" ""];
@@ -155,7 +156,7 @@
 
 	"wireplumber" = {
 	  format = "{volume}% {icon} ";
-	  format-muted = "  ";
+	  format-muted = " ";
 	  on-click = "pavucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;

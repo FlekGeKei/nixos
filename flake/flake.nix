@@ -26,6 +26,7 @@
       ];
     };
 
+
     homeConfigurations.flekgekei = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ 

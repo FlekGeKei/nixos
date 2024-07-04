@@ -81,10 +81,6 @@
 	preserve_split = true;
       };
 
-      master = {
-        new_is_master = true;
-      };
-
       gestures = {
         workspace_swipe = true;
 	workspace_swipe_fingers = 3;
@@ -103,8 +99,8 @@
 
       windowrule = [
 	"workspace 7, ^(qbittorrent)$"
-	"workspace 8, ^(discord)$"
-	"workspace 8, ^(WebCord)$"
+	"workspace 8, ^(vesktop)$"
+	"workspace 8, ^(Discord)$"
 	"workspace 1, ^(kitty)$"
 	"workspace 2, ^(Vivaldi-stable)$"
       ];

@@ -18,13 +18,6 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "electron-28.3.3" ];
     };
-    overlays = [(self: super: {
-      webcord-venctop-arrpc = pkgs.writeScriptBin "discord" ''
-	arrpc &
-	webcord
-	kill $(pgrep -f "arrpc")
-      '';
-    })];
   };
 
   swapDevices = [
@@ -151,7 +144,6 @@
     texliveFull
     #other
     mpd
-    home-manager
     intel-gpu-tools
     mesa-demos
     mako
@@ -159,7 +151,7 @@
     jq
     speedcrunch
     arrpc
-    webcord-venctop-arrpc
+    home-manager
     ## for hyprland
     xdg-desktop-portal-hyprland
     xdg-desktop-portal
@@ -168,7 +160,7 @@
     #ui
     kitty
     vivaldi
-    webcord-vencord
+    vesktop
     vlc
     bemenu
     telegram-desktop
