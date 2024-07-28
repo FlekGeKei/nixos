@@ -14,7 +14,7 @@
           "tray"
           "hyprland/language"
           "network"
-          "temperature"
+          #"temperature"
           "cpu"
           "custom/iris"
           "memory"
@@ -63,7 +63,7 @@
 	"battery" = {
 	  format = " {capacity}% {icon}";
 	  format-charging = " {capacity}% 󰂄";
-	  format-plugged = " {capacity}% 󰂅 ";
+	  format-plugged = " {capacity}% 󰚥";
 	  format-alt = "{time} {icon} ";
 	  format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
 	};
@@ -143,7 +143,7 @@
 	};
 
 	"cpu" = {
-	  format = " {usage}%  ";
+	  format = "{usage}%  ";
 	  tooltip = true;
 	};
 
@@ -155,12 +155,12 @@
 	};
 
 	"wireplumber" = {
-	  format = "{volume}% {icon} ";
+	  format = "{volume}% {icon}";
 	  format-muted = " ";
 	  on-click = "pavucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;
-	  format-icons = ["" "" " "];
+	  format-icons = ["" " " " "];
 	};
       };
     };
@@ -263,21 +263,22 @@
 
 	#workspaces button.empty {
 	  background-color: #3F3F3F;
-	  color: #FFFFFF;
+	  color: #a1a9b1;
 	}
-
-	#workspaces button.persistent {
+	
+	#workspaces button.visible {
 	  background-color: #3F3F3F;
-	  color: #FFFFFF;
+	  color: #ffffff;
 	}
 
 	#workspaces button.special {
 	  background-color: #3F3F3F;
-	  color: #FFFFFF;
+	  color: #ff0000;
 	}
 
-	#workspaces button.visible {
-	  color: #ffffff;
+
+	#workspaces button.urgent{
+	  color: #ff0000;
 	  background-color: #3f3f3f;
 	}
 

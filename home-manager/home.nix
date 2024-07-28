@@ -4,6 +4,7 @@
     homeDirectory = "/home/flekgekei";
     stateVersion = "23.11";
     enableNixpkgsReleaseCheck = false;
+    sessionPath = [ "/home/flekgekei/.local/bin" ];
 
     packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })

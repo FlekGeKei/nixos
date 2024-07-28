@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }: 
 
 {
   imports =
@@ -18,6 +18,28 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "electron-28.3.3" ];
     };
+#    overlays = [
+#      (self: super: {
+#	nixos-upgrade = pkgs.writeScriptBin "nixos-upgrade" ''
+#	  homies=("flekgekei" "idk")
+#	  for element in ${homies[@]}; do
+#	    if [[ $USER == $element ]] 
+#	      then
+#		sudo nix flake update /etc/nixos
+#		sudo nixos-rebuile switch --flake /etc/nixos
+#		home-manager switch
+#	      elif [[ $USER == root ]]; then
+#		nix flake update /etc/nixos
+#		nixos-rebuild switch --flake /etc/nixos
+#		echo ""
+#		echo "don't forget to update home configuration"
+#	      else
+#		echo "get out"
+#	    fi
+#	  done
+#	'';
+#      })
+#    ];
   };
 
   swapDevices = [
@@ -93,8 +115,6 @@
       };
     };
   };
-
-  sound.enable = true;
 
   services = {
     pipewire = {
@@ -188,6 +208,8 @@
     #compat
     wineWowPackages.full
     winetricks
+    # nur
+    nur.repos.ataraxiasjel.waydroid-script
   ];
 
   programs = { 
@@ -219,11 +241,15 @@
     };
     steam = {
       enable = true;
+      protontricks.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
     zsh = {
       enable = true;
+      shellInit = ''
+	export PATH="$PATH:$HOME/.local/bin"
+      '';
       ohMyZsh = {
         enable = true;
 	theme = "agnoster";
@@ -249,6 +275,8 @@
     hyprland.enable = true;
     gamemode.enable = true;
   };
+
+  virtualisation.waydroid.enable = true;
   
   qt = {
     enable = true;
