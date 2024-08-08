@@ -55,6 +55,9 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };
+    kernel.sysctl = {
+      "vm.max_map_count" = 16777216;
+    };
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "i915" ];
   };
@@ -180,6 +183,7 @@
     #ui
     kitty
     vivaldi
+    vivaldi-ffmpeg-codecs
     vesktop
     vlc
     bemenu
