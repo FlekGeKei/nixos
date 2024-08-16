@@ -256,7 +256,8 @@
 	}
 
 	#workspaces button.active {
-	  box-shadow: inset 0 -3px #ffffff;
+	  border-radius: 0px;
+	  box-shadow: inset 0 3px #ffffff;
 	  color: #ffffff;
 	  background-color: #3f3f3f;
 	}
@@ -275,7 +276,6 @@
 	  background-color: #3F3F3F;
 	  color: #ff0000;
 	}
-
 
 	#workspaces button.urgent{
 	  color: #ff0000;

@@ -184,10 +184,10 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Volume and Media Control
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume 45 0.05+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume 45 0.05-"
-        ", XF86AudioMute, exec, wpctl set-mute 45 toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute 46 toggle"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ 0.05+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_SINK@ 0.05-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
         
         # Brightness control
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%- "

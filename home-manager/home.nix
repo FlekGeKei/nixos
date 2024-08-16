@@ -19,6 +19,11 @@
       name = "breeze_cursors";
     };
 
+    sessionVariables = {
+      NIXPKGS_ALLOW_UNFREE = 1;
+      SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
+    };
+
     #sessionPath = [
     #  "$HOME/.local/bin"
     #];

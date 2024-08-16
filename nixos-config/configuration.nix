@@ -83,6 +83,14 @@
       enable = true;
       enable32Bit = true;
     };
+    bluetooth = {
+      enable = true;
+      settings = {
+	General = {
+	  Experimental = true;
+	};
+      };
+    };
   };
 
   networking = {
@@ -130,6 +138,8 @@
     };
     logind.lidSwitch = "ignore";
     udisks2.enable = true;
+    flatpak.enable = true;
+    blueman.enable = true;
     #illum.enable = true;
     #asusd = {
     #  enable = true;
@@ -200,7 +210,6 @@
     gimp
     evince
     texstudio
-    blockbench
     ##games
     prismlauncher
     osu-lazer-bin
@@ -245,7 +254,6 @@
     };
     steam = {
       enable = true;
-      protontricks.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
@@ -280,8 +288,6 @@
     gamemode.enable = true;
   };
 
-  virtualisation.waydroid.enable = true;
-  
   qt = {
     enable = true;
     style = "breeze";
@@ -293,6 +299,7 @@
    noto-fonts-lgc-plus
    noto-fonts-cjk-sans
    noto-fonts-cjk-serif
+   corefonts
   ];
 
   xdg = {
