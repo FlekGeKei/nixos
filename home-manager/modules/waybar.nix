@@ -14,6 +14,7 @@
           "tray"
           "hyprland/language"
           "network"
+	  "bluetooth"
           #"temperature"
           "cpu"
           "custom/iris"
@@ -31,6 +32,17 @@
 	  tooltip = true;
 	  return-type = "json";
 	  exec = "~/.config/home-manager/modules/ws/iris.sh";
+	};
+
+	"bluetooth" = {
+	  "format" = " {status} ";
+	  "format-connected" = " {device_alias} ";
+	  "format-connected-battery" = " {device_alias} {device_battery_percentage}% ";
+	  "format-device-preference" =  [ "device1" "device2" ];
+	  "tooltip-format" = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+	  "tooltip-format-connected" = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+	  "tooltip-format-enumerate-connected" = "{device_alias}\t{device_address}";
+	  "tooltip-format-enumerate-connected-battery" = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
 	};
 
 	"hyprland/workspaces" = {
@@ -143,7 +155,7 @@
 	};
 
 	"cpu" = {
-	  format = "{usage}%  ";
+	  format = " {usage}%  ";
 	  tooltip = true;
 	};
 
@@ -243,6 +255,11 @@
 	#clock {
           background-color: #3F3F3F;
 	  color: #FFFFFF;
+	}
+
+	#bluetooth {
+	  background-color: #3f3f3f;
+	  color: #ffffff;
 	}
 
 	#workspaces {

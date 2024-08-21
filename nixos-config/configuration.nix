@@ -299,7 +299,6 @@
    noto-fonts-lgc-plus
    noto-fonts-cjk-sans
    noto-fonts-cjk-serif
-   corefonts
   ];
 
   xdg = {
