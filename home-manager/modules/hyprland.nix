@@ -14,6 +14,7 @@
 	"XCURSOR_SIZE,22"
 	"QT_QPA_PLATFORM,wayland"
 	"QT_QPA_PLATFORME,gtk2"
+	"GTK_THEME,Breeze-Dark"
       ];
 
       input = {

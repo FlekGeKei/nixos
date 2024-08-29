@@ -117,6 +117,8 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    doas.enable = true;
+    sudo.enable = false;
     wrappers = {
       intel_gpu_top = {
 	owner = "root";
@@ -201,7 +203,7 @@
     qbittorrent
     megasync
     waybar
-    pavucontrol
+    pwvucontrol
     onedrive
     imv
     wf-recorder
@@ -310,12 +312,12 @@
     };
     mime = {
       enable = true;
-      #addedAssociations = {
-      #  "application/pdf" = "org.gnome.Evince.desktop";
-      #};
-      #defaultApplications = {
-      #  "" = "";
-      #};
+      addedAssociations = {
+        "application/pdf" = "org.gnome.Evince.desktop";
+      };
+      defaultApplications = {
+        "application/pdf" = "org.gnome.Evince.desktop";
+      };
     };
   };
 

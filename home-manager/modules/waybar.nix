@@ -35,7 +35,9 @@
 	};
 
 	"bluetooth" = {
-	  "format" = " {status} ";
+	  "format-on" = "";
+	  "format-off" = "";
+	  "format-disabled" = "";
 	  "format-connected" = " {device_alias} ";
 	  "format-connected-battery" = " {device_alias} {device_battery_percentage}% ";
 	  "format-device-preference" =  [ "device1" "device2" ];
@@ -169,7 +171,7 @@
 	"wireplumber" = {
 	  format = "{volume}% {icon}";
 	  format-muted = " ";
-	  on-click = "pavucontrol";
+	  on-click = "pwvucontrol";
 	  max-volume = 150;
 	  scroll-step = 1;
 	  format-icons = ["" " " " "];
