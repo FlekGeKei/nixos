@@ -120,8 +120,6 @@
 
       exec-once = [
         "waybar"
-	"swww init"
-	"swww img /home/flekgekei/Pictures/wallpapers/pc/6944830.jpg"
 	"udiskie -s"
 	"wl-paste --type text --watch cliphist store"
 	"wl-paste --type image --watch cliphist store"

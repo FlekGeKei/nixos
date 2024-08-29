@@ -171,7 +171,6 @@
     unrar
     p7zip
     mpc-cli
-    swww
     wl-clipboard
     cliphist
     steamcmd

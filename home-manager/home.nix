@@ -33,6 +33,7 @@
     ./modules/git.nix
     ./modules/gtk.nix
     ./modules/hyprland.nix
+    ./modules/hyprpaper.nix
     ./modules/kitty.nix
     ./modules/mako.nix
     ./modules/mpd.nix
