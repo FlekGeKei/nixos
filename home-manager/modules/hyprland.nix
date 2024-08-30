@@ -15,6 +15,7 @@
 	"QT_QPA_PLATFORM,wayland"
 	"QT_QPA_PLATFORME,gtk2"
 	"GTK_THEME,Breeze-Dark"
+	"ELECTRON_OZONE_PLATFORM_HINT,wayland"
       ];
 
       input = {

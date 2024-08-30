@@ -187,9 +187,6 @@
     arrpc
     home-manager
     ## for hyprland
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal
-    xdg-utils
     udiskie
     #ui
     kitty
@@ -303,12 +300,7 @@
   ];
 
   xdg = {
-    portal = {
-      enable = true;
-      extraPortals = [
-	pkgs.xdg-desktop-portal-hyprland
-      ];
-    };
+    portal.enable = true;
     mime = {
       enable = true;
       addedAssociations = {
