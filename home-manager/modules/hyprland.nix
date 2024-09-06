@@ -97,6 +97,7 @@
 	enable_swallow = true;
 	render_ahead_of_time = false;
 	disable_hyprland_logo = true;
+	vfr = true;
       };
 
       windowrule = [
@@ -121,7 +122,7 @@
 
       exec-once = [
         "waybar"
-	"udiskie -s"
+	"udiskie -s -A --menu-update-workaround"
 	"wl-paste --type text --watch cliphist store"
 	"wl-paste --type image --watch cliphist store"
       ];

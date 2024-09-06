@@ -7,9 +7,7 @@
     sessionPath = [ "/home/flekgekei/.local/bin" ];
 
     packages = with pkgs; [
-      (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
       fastfetch
-      brightnessctl
     ];
 
     pointerCursor = {

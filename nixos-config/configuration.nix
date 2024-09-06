@@ -56,9 +56,9 @@
       efi.canTouchEfiVariables = false;
     };
     kernel.sysctl = {
-      "vm.max_map_count" = 16777216;
+      "vm.max_map_count" = 2147483642;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     initrd.kernelModules = [ "i915" ];
   };
 
@@ -188,10 +188,9 @@
     home-manager
     ## for hyprland
     udiskie
+    brightnessctl
     #ui
     kitty
-    vivaldi
-    vivaldi-ffmpeg-codecs
     vesktop
     vlc
     bemenu
@@ -208,14 +207,18 @@
     gimp
     evince
     texstudio
+    kdePackages.filelight
     ##games
     prismlauncher
     osu-lazer-bin
+    heroic
     ##gtk&other
     kdePackages.breeze-gtk
     kdePackages.breeze-icons
     kdePackages.breeze
     qt6Packages.qt6gtk2
+    qt6.qtwayland
+    qt5.qtwayland
     #compat
     wineWowPackages.full
     winetricks
@@ -282,6 +285,7 @@
       enable = true;
       lfs.enable = true;
     };
+    firefox.enable = true;
     hyprland.enable = true;
     gamemode.enable = true;
   };
@@ -293,10 +297,12 @@
   };
 
   fonts.packages = with pkgs; [
-   noto-fonts
-   noto-fonts-lgc-plus
-   noto-fonts-cjk-sans
-   noto-fonts-cjk-serif
+    (pkgs.nerdfonts.override { fonts = [ "Noto" ]; })
+    noto-fonts
+    noto-fonts-lgc-plus
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-monochrome-emoji
   ];
 
   xdg = {
