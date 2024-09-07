@@ -174,6 +174,7 @@
     wl-clipboard
     cliphist
     steamcmd
+    gamescope
     ##books
     texliveFull
     #other
@@ -196,7 +197,7 @@
     bemenu
     telegram-desktop
     qbittorrent
-    megasync
+    megacmd
     waybar
     pwvucontrol
     onedrive
@@ -257,6 +258,12 @@
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+      extest.enable = true;
+      extraPackages = with pkgs; [
+	steamcmd
+	gamescope
+      ];
     };
     zsh = {
       enable = true;
