@@ -6,6 +6,7 @@
     dataDir = "/home/flekgekei/.config/mpd";
     dbFile = "/home/flekgekei/.config/mpd/mpd.db";
     network = {
+      listenAddress = "any";
       port = 6600;
       startWhenNeeded = false;
     };

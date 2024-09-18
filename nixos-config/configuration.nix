@@ -58,22 +58,24 @@
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
     };
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "i915" ];
   };
 
   systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-	Type = "simple";
-	ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-	Restart = "on-failure";
-	RestartSec = 1;
-	TimeoutStopSec = 10;
+    user.services = {
+      polkit-gnome-authentication-agent-1 = {
+	description = "polkit-gnome-authentication-agent-1";
+	wantedBy = [ "graphical-session.target" ];
+	wants = [ "graphical-session.target" ];
+	after = [ "graphical-session.target" ];
+	serviceConfig = {
+	  Type = "simple";
+	  ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+	  Restart = "on-failure";
+	  RestartSec = 1;
+	  TimeoutStopSec = 10;
+	};
       };
     };
   };
@@ -136,7 +138,14 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+      audio.enable = true;
       wireplumber.enable = true;
+    };
+    syncthing = {
+      enable = true;
+      user = "flekgekei";
+      group = "users";
+      openDefaultPorts = true;
     };
     logind.lidSwitch = "ignore";
     udisks2.enable = true;
@@ -180,6 +189,8 @@
     #other
     mpd
     intel-gpu-tools
+    intel-compute-runtime
+    intel-graphics-compiler
     mesa-demos
     mako
     bc
@@ -187,6 +198,8 @@
     speedcrunch
     arrpc
     home-manager
+    megacmd
+    coppwr
     ## for hyprland
     udiskie
     brightnessctl
@@ -197,10 +210,8 @@
     bemenu
     telegram-desktop
     qbittorrent
-    megacmd
     waybar
     pwvucontrol
-    onedrive
     imv
     wf-recorder
     grim
@@ -209,6 +220,7 @@
     evince
     texstudio
     kdePackages.filelight
+    keepassxc
     ##games
     prismlauncher
     osu-lazer-bin
@@ -260,8 +272,10 @@
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       extest.enable = true;
+      extraCompatPackages = with pkgs; [
+	proton-ge-bin
+      ];
       extraPackages = with pkgs; [
-	steamcmd
 	gamescope
       ];
     };
@@ -332,10 +346,12 @@
       allowedTCPPorts = [
 	6600
 	25565
+	12280
       ];
       allowedUDPPorts = [
 	6600
 	24454
+	12280
       ];
     };
   };

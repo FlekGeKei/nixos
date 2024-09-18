@@ -105,12 +105,9 @@
 	"workspace 8, ^(vesktop)$"
 	"workspace 8, ^(Discord)$"
 	"workspace 1, ^(kitty)$"
-	"workspace 2, ^(Vivaldi-stable)$"
       ];
 
       windowrulev2 = [
-	"float,class:^(Vivaldi-stable)$,title:^(Vivaldi - Login - Vivaldi)$"
-	"size 310 590,class:^(Vivaldi-stable)$,title:^(Vivaldi - Login - Vivaldi)$"
 	"float,class:^(steam)$,title:^(Steam Settings)$"
 	"float,class:^(steam)$,title:^(Friends List)$"
 	"size 384 856,class:^(steam)$,title:^(Friends List)$"
@@ -118,6 +115,8 @@
 	"minsize 1 1, title:^()$,class:^(steam)$"
 	"stayfocused, title:^()$,class:^(waybar)$"
 	"minsize 1 1, title:^()$,class:^(waybar)$"
+	"workspace 6, title:^()$,class:^(KeePassXC)$"
+	"workspace 2, title:^()$,class:^(Mozilla Firefox)$"
       ];
 
       exec-once = [
@@ -125,6 +124,8 @@
 	"udiskie -s -A --menu-update-workaround"
 	"wl-paste --type text --watch cliphist store"
 	"wl-paste --type image --watch cliphist store"
+	"mega-sync"
+	"keepassxc"
       ];
 
       bind = [ 
