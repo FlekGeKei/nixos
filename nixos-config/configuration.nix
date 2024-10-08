@@ -147,14 +147,18 @@
       group = "users";
       openDefaultPorts = true;
     };
+    clamav = {
+      scanner.enable = true;
+      updater.enable = true;
+      daemon.enable = true;
+    };
+    fail2ban.enable = false;
     logind.lidSwitch = "ignore";
     udisks2.enable = true;
     flatpak.enable = true;
     blueman.enable = true;
-    #illum.enable = true;
-    #asusd = {
-    #  enable = true;
-    #};
+    illum.enable = false;
+    asusd.enable = false;
   };
 
   users = {
@@ -183,7 +187,6 @@
     wl-clipboard
     cliphist
     steamcmd
-    gamescope
     ##books
     texliveFull
     #other
@@ -221,6 +224,8 @@
     texstudio
     kdePackages.filelight
     keepassxc
+    clamtk
+    libreoffice
     ##games
     prismlauncher
     osu-lazer-bin
@@ -305,6 +310,10 @@
     git = {
       enable = true;
       lfs.enable = true;
+    };
+    appimage = {
+      enable = true;
+      binfmt = true;
     };
     firefox.enable = true;
     hyprland.enable = true;
