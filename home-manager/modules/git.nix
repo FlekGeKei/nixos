@@ -8,5 +8,8 @@
       signByDefault = true;
       key = "FlekGeKei@outlook.com";
     };
+    extraConfig = {
+      safe.directory = "~/Documents/nixos";
+    };
   };
 }

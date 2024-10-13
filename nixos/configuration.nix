@@ -1,10 +1,10 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, meta, ... }: 
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  imports = [ 
+    ./hardware-configuration.nix
+  ];
+
   nix = { 
     gc = {
       automatic = true;
@@ -13,33 +13,12 @@
    };
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
+
   nixpkgs = {
     config = {
       allowUnfree = true;
       permittedInsecurePackages = [ "electron-28.3.3" ];
     };
-#    overlays = [
-#      (self: super: {
-#	nixos-upgrade = pkgs.writeScriptBin "nixos-upgrade" ''
-#	  homies=("flekgekei" "idk")
-#	  for element in ${homies[@]}; do
-#	    if [[ $USER == $element ]] 
-#	      then
-#		sudo nix flake update /etc/nixos
-#		sudo nixos-rebuile switch --flake /etc/nixos
-#		home-manager switch
-#	      elif [[ $USER == root ]]; then
-#		nix flake update /etc/nixos
-#		nixos-rebuild switch --flake /etc/nixos
-#		echo ""
-#		echo "don't forget to update home configuration"
-#	      else
-#		echo "get out"
-#	    fi
-#	  done
-#	'';
-#      })
-#    ];
   };
 
   swapDevices = [
@@ -96,7 +75,7 @@
   };
 
   networking = {
-    hostName = "fgk";
+    hostName = meta.hostname;
     networkmanager.enable = true;
   };
 
@@ -131,6 +110,21 @@
     };
   };
 
+  sops = {
+    age = {
+      keyFile = "/home/${meta.adminUser}/.config/sops/age/keys.txt";
+      sshKeyPaths = [ "/root/.ssh/id_ed25519" ];
+    };
+
+    defaultSopsFormat = "yaml";
+    defaultSopsFile = ./secrets/secrets.yaml;
+
+    secrets = {
+      "users/flekgekei/passwordHashed".neededForUsers = true;
+      "users/root/passwordHashed".neededForUsers = true;
+    };
+  };
+
   services = {
     pipewire = {
       enable = true;
@@ -142,8 +136,12 @@
       wireplumber.enable = true;
     };
     syncthing = {
+      #settings = {
+	#folders = {
+	#};
+      #};
       enable = true;
-      user = "flekgekei";
+      user = meta.adminUser;
       group = "users";
       openDefaultPorts = true;
     };
@@ -162,14 +160,16 @@
   };
 
   users = {
-    defaultUserShell = pkgs.zsh;
-
     users = {
-      flekgekei = {
+      ${meta.adminUser} = {
         isNormalUser = true;
         extraGroups = [ "wheel" "video" "audio" "imput" "networkmanager" ];
+	hashedPasswordFile = config.sops.secrets."users/flekgekei/passwordHashed".path;
       };
+      root.hashedPasswordFile = config.sops.secrets."users/root/passwordHashed".path;
     };
+    defaultUserShell = pkgs.zsh;
+    mutableUsers = false;
   };
 
   environment.systemPackages = with pkgs; [
@@ -186,7 +186,6 @@
     mpc-cli
     wl-clipboard
     cliphist
-    steamcmd
     ##books
     texliveFull
     #other
@@ -231,6 +230,7 @@
     osu-lazer-bin
     heroic
     ##gtk&other
+    hyprcursor
     kdePackages.breeze-gtk
     kdePackages.breeze-icons
     kdePackages.breeze
@@ -242,6 +242,9 @@
     winetricks
     # nur
     nur.repos.ataraxiasjel.waydroid-script
+    #sops
+    age
+    sops
   ];
 
   programs = { 
@@ -259,7 +262,6 @@
 	nerdcommenter
 	vim-visual-multi
       ];
-      colorscheme = "iceberg";
       opts = {
         number = true;
 	relativenumber = true;
@@ -270,6 +272,7 @@
         register = "unnamedplus";
 	providers.wl-copy.enable = true;
       };
+      colorscheme = "iceberg";
     };
     steam = {
       enable = true;
@@ -279,9 +282,6 @@
       extest.enable = true;
       extraCompatPackages = with pkgs; [
 	proton-ge-bin
-      ];
-      extraPackages = with pkgs; [
-	gamescope
       ];
     };
     zsh = {
@@ -344,6 +344,12 @@
       };
       defaultApplications = {
         "application/pdf" = "org.gnome.Evince.desktop";
+	"image/png" = "imv.desktop"; 
+	"image/jpeg" = "imv.desktop"; 
+	"image/svg" = "imv.desktop"; 
+	"image/gif" = "imv.desktop"; 
+	"image/tiff" = "imv.desktop"; 
+	"image/webp" = "imv.desktop"; 
       };
     };
   };
@@ -355,12 +361,9 @@
       allowedTCPPorts = [
 	6600
 	25565
-	12280
       ];
       allowedUDPPorts = [
 	6600
-	24454
-	12280
       ];
     };
   };

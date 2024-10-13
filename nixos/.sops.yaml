@@ -1,0 +1,12 @@
+# 
+keys:
+  - &users:
+    - &flekgekei age1c6x4v2wwupnvv756288j9k2kf3ftk022x76skgw56u5lvjpk93aqyruxve
+  - &hosts:
+    - &root age1rf9h0e2e5sv2h0nzh4cuzgp3m06j7qwuf7pw3s0g88yxjhvu7ysqz88vy8
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *flekgekei
+      - *root
