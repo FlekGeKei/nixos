@@ -16,16 +16,17 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, nur, sops-nix, ... }: let
+  outputs = { nixpkgs, home-manager, nixvim, nur, sops-nix, ... }: let
     system = "x86_64-linux";
     hostname = "fgk";
     adminUser = "flekgekei";
+    wifiModule = "wlo1";
   in {
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system; 
       specialArgs = {
 	meta = {
-	  inherit hostname adminUser;
+	  inherit hostname adminUser wifiModule;
 	};
       };
       modules = [ 

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, meta, ... }: 
+{ config, pkgs, meta, ... }: 
 
 {
   imports = [ 
@@ -14,19 +14,12 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [ "electron-28.3.3" ];
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 2*1024;
-    }
-  ];
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 2*1024;
+  }];
 
   boot = {
     loader = {
@@ -75,11 +68,114 @@
   };
 
   networking = {
+    networkmanager = {
+      enable = true;
+      ensureProfiles = {
+	environmentFiles = [ config.sops.templates."networks.env".path ];
+	profiles = {
+	  N1 = {
+	    connection = {
+	      id = "$N1_NAME";
+	      type = "wifi";
+	      interface-name = "${meta.wifiModule}";
+	    };
+	    wifi = {
+	      mode = "infrastructure";
+	      ssid = "$N1_NAME";
+	    };
+	    wifi-security = {
+	      auth-alg = "open";
+	      key-mgmt = "wpa-psk";
+	      psk = "$N1_PASS";
+	    };
+	    ipv4 = { method = "auto"; };
+	    ipv6 = {
+	      addr-gen-mode = "default";
+	      method = "auto";
+	    };
+	    proxy = { };
+	  };
+	  "N1-2" = {
+	    connection = {
+	      id = "$N1_NAME2";
+	      type = "wifi";
+	      interface-name = "${meta.wifiModule}";
+	    };
+	    wifi = {
+	      mode = "infrastructure";
+	      ssid = "$N1_NAME2";
+	    };
+	    wifi-security = {
+	      auth-alg = "open";
+	      key-mgmt = "wpa-psk";
+	      psk = "$N1_PASS";
+	    };
+	    ipv4 = { method = "auto"; };
+	    ipv6 = {
+	      addr-gen-mode = "default";
+	      method = "auto";
+	    };
+	    proxy = { };
+	  };
+	  N2 = {
+	    connection = {
+	      id = "$N2_NAME";
+	      type = "wifi";
+	      interface-name = "${meta.wifiModule}";
+	    };
+	    wifi = {
+	      mode = "infrastructure";
+	      ssid = "$N2_NAME";
+	    };
+	    wifi-security = {
+	      auth-alg = "open";
+	      key-mgmt = "wpa-psk";
+	      psk = "$N2_PASS";
+	    };
+	    ipv4 = { method = "auto"; };
+	    ipv6 = {
+	      addr-gen-mode = "default";
+	      method = "auto";
+	    };
+	    proxy = { };
+	  };
+	  N3 = {
+	    connection = {
+	      id = "$N3_NAME";
+	      type = "wifi";
+	      interface-name = "${meta.wifiModule}";
+	    };
+	    wifi = {
+	      mode = "infrastructure";
+	      ssid = "$N3_NAME";
+	    };
+	    wifi-security = {
+	      auth-alg = "open";
+	      key-mgmt = "wpa-psk";
+	      psk = "$N3_PASS";
+	    };
+	    ipv4 = { method = "auto"; };
+	    ipv6 = {
+	      addr-gen-mode = "default";
+	      method = "auto";
+	    };
+	    proxy = { };
+	  };
+	};
+      };
+    };
     hostName = meta.hostname;
-    networkmanager.enable = true;
+    nftables.enable = true;
+    firewall = {
+      allowedTCPPorts = [
+	6600
+	25565
+      ];
+      allowedUDPPorts = [
+	6600
+      ];
+    };
   };
-
-  time.timeZone = "CET";
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -122,6 +218,28 @@
     secrets = {
       "users/flekgekei/passwordHashed".neededForUsers = true;
       "users/root/passwordHashed".neededForUsers = true;
+      "networking/networkmanager/profiles/N1/name" = {};
+      "networking/networkmanager/profiles/N1/name2" = {};
+      "networking/networkmanager/profiles/N1/password" = {};
+      "networking/networkmanager/profiles/N2/name" = {};
+      "networking/networkmanager/profiles/N2/password" = {};
+      "networking/networkmanager/profiles/N3/name" = {};
+      "networking/networkmanager/profiles/N3/password" = {};
+    };
+
+    templates = {
+      "networks.env" = {
+	content = ''
+	  N1_NAME="${config.sops.placeholder."networking/networkmanager/profiles/N1/name"}"
+	  N1_NAME2="${config.sops.placeholder."networking/networkmanager/profiles/N1/name2"}"
+	  N1_PASS="${config.sops.placeholder."networking/networkmanager/profiles/N1/password"}"
+	  N2_NAME="${config.sops.placeholder."networking/networkmanager/profiles/N2/name"}"
+	  N2_PASS="${config.sops.placeholder."networking/networkmanager/profiles/N2/password"}"
+	  N3_NAME="${config.sops.placeholder."networking/networkmanager/profiles/N3/name"}"
+	  N3_PATH="${config.sops.placeholder."networking/networkmanager/profiles/N3/password"}"
+	'';
+	path = "/run/secrets/networks.env";
+      };
     };
   };
 
@@ -262,6 +380,36 @@
 	nerdcommenter
 	vim-visual-multi
       ];
+      plugins = {
+	lsp = {
+	  enable = true;
+	  servers = {
+	    ts_ls.enable = true;
+	    lua_ls.enable = true;
+	    pylsp.enable = true;
+	    bashls.enable = true;
+	    nil_ls.enable = true;
+	  };
+	};
+	cmp = {
+	  enable = true;
+	  autoEnableSources = true;
+	  settings.sources = [
+	    { name = "nvim_lsp"; }
+	    { name = "path"; }
+	    { name = "buffer"; }
+	  ];
+	  settings.mapping = {
+	    "<C-Space>" = "cmp.mapping.complete()";
+	    "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+	    "<C-e>" = "cmp.mapping.close()";
+	    "<C-f>" = "cmp.mapping.scroll_docs(4)";
+	    "<CR>" = "cmp.mapping.confirm({ select = true })";
+	    "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+	    "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+	  };
+	};
+      };
       opts = {
         number = true;
 	relativenumber = true;
@@ -354,19 +502,7 @@
     };
   };
 
-  # Open ports in the firewall. 
-  networking = {
-    nftables.enable = true;
-    firewall = {
-      allowedTCPPorts = [
-	6600
-	25565
-      ];
-      allowedUDPPorts = [
-	6600
-      ];
-    };
-  };
+  time.timeZone = "CET";
 
   system.stateVersion = "23.11"; 
 }
