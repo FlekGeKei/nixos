@@ -14,8 +14,6 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   swapDevices = [{
     device = "/var/lib/swapfile";
     size = 2*1024;
@@ -23,31 +21,26 @@
 
   boot = {
     loader = {
-      # Use the systemd-boot EFI boot loader.
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };
-    kernel.sysctl = {
-      "vm.max_map_count" = 2147483642;
-    };
+    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
     kernelPackages = pkgs.linuxPackages_latest;
     initrd.kernelModules = [ "i915" ];
   };
 
-  systemd = {
-    user.services = {
-      polkit-gnome-authentication-agent-1 = {
-	description = "polkit-gnome-authentication-agent-1";
-	wantedBy = [ "graphical-session.target" ];
-	wants = [ "graphical-session.target" ];
-	after = [ "graphical-session.target" ];
-	serviceConfig = {
-	  Type = "simple";
-	  ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-	  Restart = "on-failure";
-	  RestartSec = 1;
-	  TimeoutStopSec = 10;
-	};
+  systemd.user.services = {
+    polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
       };
     };
   };
@@ -295,7 +288,6 @@
     wget
     curl
     ranger
-    htop
     fzf
     zip
     unzip
@@ -316,7 +308,6 @@
     bc
     jq
     speedcrunch
-    arrpc
     home-manager
     megacmd
     coppwr
@@ -436,6 +427,16 @@
       enable = true;
       shellInit = ''
 	export PATH="$PATH:$HOME/.local/bin"
+
+	source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+	zstyle ':completion:*:git-checkout:*' sort false
+	zstyle ':completion:*:descriptions' format '[%d]'
+	zstyle ':completion:*' menu no
+	zstyle ':fzf-tab:complete:cd:*' fzf-preview '${pkgs.eza}/bin/eza -1 --color=always $realpath'
+	zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+	zstyle ':fzf-tab:*' use-fzf-default-opts yes
+	zstyle ':fzf-tab:*' switch-group '<' '>'
+	zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
       '';
       ohMyZsh = {
         enable = true;
@@ -443,17 +444,18 @@
 	plugins = [
           "git"
 	  "sudo"
-	  "fzf"
-	  "zsh-interactive-cd"
 	  "extract"
+	  "man"
+	];
+	customPkgs = with pkgs; [
+	  zsh-fzf-tab
+	  eza
 	];
       };
     };
-    gnupg = {
-      agent = {
-	enable = true;
-	enableSSHSupport = true;
-      };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
     git = {
       enable = true;
@@ -463,9 +465,21 @@
       enable = true;
       binfmt = true;
     };
+    htop = {
+      enable = true;
+      settings = {
+	show_cpu_frequency = true;
+	show_cpu_temperature = true;
+      };
+    };
+    fzf = {
+      keybindings = true;
+      fuzzyCompletion = true;
+    };
     firefox.enable = true;
     hyprland.enable = true;
     gamemode.enable = true;
+    tmux.enable = true;
   };
 
   qt = {
@@ -503,6 +517,8 @@
   };
 
   time.timeZone = "CET";
+
+  nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "23.11"; 
 }
