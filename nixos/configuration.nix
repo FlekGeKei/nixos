@@ -68,13 +68,13 @@
 	profiles = {
 	  N1 = {
 	    connection = {
-	      id = "$N1_NAME";
+	      id = "$N1_NAME2";
 	      type = "wifi";
 	      interface-name = "${meta.wifiModule}";
 	    };
 	    wifi = {
 	      mode = "infrastructure";
-	      ssid = "$N1_NAME";
+	      ssid = "$N1_NAME2";
 	    };
 	    wifi-security = {
 	      auth-alg = "open";
@@ -90,13 +90,13 @@
 	  };
 	  "N1-2" = {
 	    connection = {
-	      id = "$N1_NAME2";
+	      id = "$N1_NAME";
 	      type = "wifi";
 	      interface-name = "${meta.wifiModule}";
 	    };
 	    wifi = {
 	      mode = "infrastructure";
-	      ssid = "$N1_NAME2";
+	      ssid = "$N1_NAME";
 	    };
 	    wifi-security = {
 	      auth-alg = "open";
@@ -334,6 +334,7 @@
     keepassxc
     clamtk
     libreoffice
+    thunderbird
     ##games
     prismlauncher
     osu-lazer-bin
@@ -350,7 +351,7 @@
     wineWowPackages.full
     winetricks
     # nur
-    nur.repos.ataraxiasjel.waydroid-script
+    #nur.repos.ataraxiasjel.waydroid-script
     #sops
     age
     sops
