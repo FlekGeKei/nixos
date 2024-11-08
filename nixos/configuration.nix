@@ -64,11 +64,11 @@
     networkmanager = {
       enable = true;
       ensureProfiles = {
-	environmentFiles = [ /run/secrets/rendered/networks.env ];
+	environmentFiles = [ config.sops.templates."networks.env".path ];
 	profiles = {
 	  N1 = {
 	    connection = {
-	      id = "$N1_NAME2";
+	      id = "N1_NAME2";
 	      type = "wifi";
 	      interface-name = "${meta.wifiModule}";
 	    };
@@ -79,8 +79,7 @@
 	    wifi-security = {
 	      auth-alg = "open";
 	      key-mgmt = "wpa-psk";
-	      psk = "$N1_PASS";
-	    };
+	      psk = "$N1_PASS";	    };
 	    ipv4 = { method = "auto"; };
 	    ipv6 = {
 	      addr-gen-mode = "default";
@@ -211,13 +210,13 @@
     secrets = {
       "users/flekgekei/passwordHashed".neededForUsers = true;
       "users/root/passwordHashed".neededForUsers = true;
-      "networking/networkmanager/profiles/N1/name" = {};
-      "networking/networkmanager/profiles/N1/name2" = {};
-      "networking/networkmanager/profiles/N1/password" = {};
-      "networking/networkmanager/profiles/N2/name" = {};
-      "networking/networkmanager/profiles/N2/password" = {};
-      "networking/networkmanager/profiles/N3/name" = {};
-      "networking/networkmanager/profiles/N3/password" = {};
+      "networking/networkmanager/profiles/N1/name".neededForUsers = true;
+      "networking/networkmanager/profiles/N1/name2".neededForUsers = true;
+      "networking/networkmanager/profiles/N1/password".neededForUsers = true;
+      "networking/networkmanager/profiles/N2/name".neededForUsers = true;
+      "networking/networkmanager/profiles/N2/password".neededForUsers = true;
+      "networking/networkmanager/profiles/N3/name".neededForUsers = true;
+      "networking/networkmanager/profiles/N3/password".neededForUsers = true;
     };
 
     templates = {
@@ -231,7 +230,7 @@
 	  N3_NAME="${config.sops.placeholder."networking/networkmanager/profiles/N3/name"}"
 	  N3_PATH="${config.sops.placeholder."networking/networkmanager/profiles/N3/password"}"
 	'';
-	path = "/run/secrets/networks.env";
+	path = "/run/NetworkManager/networks.env";
       };
     };
   };
