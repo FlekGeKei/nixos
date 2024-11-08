@@ -11,12 +11,14 @@
         "XDG_CURRENT_DESCTOP,Hyprland"
 	"XDG_SESSION_TYPE,wayland"
 	"XDG_SESSION_DESCTOP,Hyprland"
-	"HYPRCURSOR_THEME,rose-pine-hyprcursor"
-	"HYPRCURSOR_SIZE,22"
 	"QT_QPA_PLATFORM,wayland"
 	"QT_QPA_PLATFORME,gtk2"
 	"GTK_THEME,Breeze-Dark"
 	"ELECTRON_OZONE_PLATFORM_HINT,wayland"
+
+	#"HYPRCURSOR_THEME,rose-pine-hyprcursor"
+	#"HYPRCURSOR_SIZE,22"
+	"XCURSOR_SIZE,22"
       ];
 
       input = {
@@ -127,6 +129,7 @@
 	"wl-paste --type image --watch cliphist store"
 	"mega-sync"
 	"keepassxc"
+
       ];
 
       bind = [ 

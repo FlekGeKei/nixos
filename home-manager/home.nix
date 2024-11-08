@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   home = {
     username = "flekgekei";
     homeDirectory = "/home/flekgekei";
@@ -35,10 +35,10 @@
     ./modules/kitty.nix
     ./modules/mako.nix
     ./modules/mpd.nix
+    ./modules/lf.nix
     #./modules/ncmpcpp.nix
     #./modules/qt.nix
-    ./modules/ranger.nix
     ./modules/waybar.nix
-    #./modules/zsh.nix
+    ./modules/dconf.nix
   ];
 }

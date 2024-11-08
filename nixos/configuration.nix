@@ -64,7 +64,7 @@
     networkmanager = {
       enable = true;
       ensureProfiles = {
-	environmentFiles = [ config.sops.templates."networks.env".path ];
+	environmentFiles = [ /run/secrets/rendered/networks.env ];
 	profiles = {
 	  N1 = {
 	    connection = {
@@ -270,11 +270,13 @@
     asusd.enable = false;
   };
 
+  virtualisation.libvirtd.enable = true;
+
   users = {
     users = {
       ${meta.adminUser} = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "audio" "imput" "networkmanager" ];
+        extraGroups = [ "wheel" "video" "audio" "imput" "networkmanager" "libvirtd" ];
 	hashedPasswordFile = config.sops.secrets."users/flekgekei/passwordHashed".path;
       };
       root.hashedPasswordFile = config.sops.secrets."users/root/passwordHashed".path;
@@ -287,8 +289,8 @@
     #cli-shit
     wget
     curl
-    ranger
     fzf
+    lf
     zip
     unzip
     unrar
@@ -317,14 +319,13 @@
     #ui
     kitty
     vesktop
-    vlc
+    mpv
     bemenu
     telegram-desktop
     qbittorrent
     waybar
     pwvucontrol
     imv
-    wf-recorder
     grim
     slurp
     gimp
@@ -477,6 +478,8 @@
       keybindings = true;
       fuzzyCompletion = true;
     };
+    virt-manager.enable = true;
+    dconf.enable = true;
     firefox.enable = true;
     hyprland.enable = true;
     gamemode.enable = true;

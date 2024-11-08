@@ -78,7 +78,7 @@
 	  format = " {capacity}% {icon}";
 	  format-charging = " {capacity}% 󰂄";
 	  format-plugged = " {capacity}% 󰚥";
-	  format-alt = "{time} {icon} ";
+	  format-alt = "{time} {icon}";
 	  format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
 	};
 
